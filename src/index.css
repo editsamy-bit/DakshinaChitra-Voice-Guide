@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Montserrat", sans-serif;
+
+  --color-museum-terracotta: #A64B2A;
+  --color-museum-clay: #D7A86E;
+  --color-museum-sand: #FFEBC1;
+  --color-museum-wood: #8E3200;
+}
+
+@layer base {
+  body {
+    @apply bg-[#fdfaf1] text-[#2c1810];
+  }
+}
+
+.museum-card {
+  @apply bg-white rounded-[32px] border border-[#e5e5e5] shadow-sm;
+}
+
+.museum-text-shadow {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.kolam-pattern {
+  background-image: radial-gradient(#A64B2A 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+}

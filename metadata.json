@@ -1,0 +1,6 @@
+{
+  "name": "DakshinaChitra Voice Guide",
+  "description": "An AI-powered voice assistant for the DakshinaChitra Museum, providing visitor information with a cultural touch.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": []
+}
