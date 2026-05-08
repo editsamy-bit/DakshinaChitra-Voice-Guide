@@ -92,7 +92,7 @@ export default function App() {
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
     
-    const userMsg: Message = { role: 'user', text, id: Date.now().toString() };
+    const userMsg: Message = { role: 'user', text, id: crypto.randomUUID() };
     setMessages(prev => [...prev, userMsg]);
     setIsLoading(true);
     setTranscript('');
@@ -109,20 +109,31 @@ export default function App() {
         const quotaMsg: Message = { 
           role: 'model', 
           text: "The assistant is currently resting due to high demand. Please try again in a few minutes.", 
-          id: (Date.now() + 1).toString() 
+          id: crypto.randomUUID()
         };
         setMessages(prev => [...prev, quotaMsg]);
         speak("The assistant is currently resting. Please try again later.");
         return;
       }
+      
+      if (responseText === "INVALID_API_KEY_ERROR") {
+        const keyMsg: Message = { 
+          role: 'model', 
+          text: "The API Key configured in the environment is invalid. Please update the GEMINI_API_KEY.", 
+          id: crypto.randomUUID()
+        };
+        setMessages(prev => [...prev, keyMsg]);
+        speak("My API key is invalid. Please configure a valid key.");
+        return;
+      }
 
-      const assistantMsg: Message = { role: 'model', text: responseText, id: (Date.now() + 1).toString() };
+      const assistantMsg: Message = { role: 'model', text: responseText, id: crypto.randomUUID() };
       
       setMessages(prev => [...prev, assistantMsg]);
       speak(responseText);
     } catch (error) {
       console.error(error);
-      const errorMsg: Message = { role: 'model', text: "Sorry, I encountered an issue.", id: 'error' };
+      const errorMsg: Message = { role: 'model', text: "Sorry, I encountered an issue.", id: `error-${crypto.randomUUID()}` };
       setMessages(prev => [...prev, errorMsg]);
     } finally {
       setIsLoading(false);
