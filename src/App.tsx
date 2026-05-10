@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mic, MicOff, Volume2, VolumeX, History, MapPin, Clock, Ticket, Info, ChevronRight, Play, Languages, Phone } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { askAssistant } from './services/geminiService';
 
 interface Message {
@@ -357,6 +358,7 @@ export default function App() {
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #A64B2A; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
       `}</style>
+      <SpeedInsights />
     </div>
   );
 }
@@ -373,5 +375,3 @@ function QuickAction({ icon, text, onClick }: { icon: React.ReactNode, text: str
     </button>
   );
 }
-
-
